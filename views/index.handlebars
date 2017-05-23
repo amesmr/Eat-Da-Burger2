@@ -1,0 +1,140 @@
+<body>
+    <div class="fullscreen-bg">
+        <video loop muted autoplay poster="assets/img/Capture.PNG" class="fullscreen-bg__video">
+            <source src="assets/img/backgroundVideo.mp4" type="video/mp4">
+        </video>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">Eat-Dat-Burger!!</div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="btn-link"><a href="/">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="jumbotron animated rotateInDownLeft">
+        <div>
+            <img class="jumbo-img center-block" src="assets/img/BelushiCheebordger.jpg" alt="The Olympia w Belushi">
+        </div>
+        <div class="jumbo-header animated hinge">
+            <strong><h1 style="text-align: center;">Eat-Dat-Burger!!</h1></strong>
+        </div>
+    </div>
+    <div class="row gifs">
+        <div class="col-md-6">
+            <img class="gifs center-block animated shake" src="assets/img/cheebordger1.gif" alt="Cheebordger, cheebordger!">
+        </div>
+        <div class="col-md-6">
+            <img class="gifs center-block animated shake" src="assets/img/cheebordger2.gif" alt="Cheebordger, cheebordger!">
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-lg-6 col-md-6">
+            {{#each burgers}}
+                {{#unless this.devoured}}
+                {{!--undevoured burgers go here on the left side of the page--}}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h3>{{this.burger_name}}</h3>
+                        </div>
+                    </div>
+                    <div class="panel-body not-devoured">
+                        <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <input type="hidden" name="devoured" value=1>
+                            <button type="submit">Devour it!</button>
+                            <img src="assets/img/panelBurger.png" alt="Burger Image" style="height: 125px;">
+                        </form>
+                    </div>
+                </div>
+                {{/unless}}
+            {{/each}}
+        </div>
+        <div class=" col-lg-6 col-md-6">
+            {{#each burgers}}
+                {{#if this.devoured}}
+                {{!--devoured burgers go here on right side of page--}}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h3>{{this.burger_name}}</h3>
+                            <p>It was Yummy!</p>
+                        </div>
+                    </div>
+                    <div class="panel-body devoured">
+                        <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <input type="hidden" name="devoured" value=0>
+                            <button type="submit">Get Another One!</button>
+                            <img src="assets/img/panelBurger.png" alt="Burger Image" style="height: 125px;">
+                        </form>
+                    </div>
+                </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="col-md-6 col col-sm-6 col-md-offset-3 col-lg-offset-3">
+        <form class="create-update-form" action="/" method="POST">
+            <div class="form-group">
+                <label for="burger_name">What're <em>YOU</em> Craving?</label>
+                <input type="hidden" name="devoured" value=0>
+                <input type="text" id="burger_name" name="burger_name">
+                <button type="submit" class="btn btn-primary">Create Burger</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer col-md-12">
+        <div class="col-md-3 foot">
+            Developed by <a href="https://github.com/amesmr">Matt Ames</a>
+        </div>
+        <div class="col-md-6 foot" style="text-align: center;">
+            Copyright &copy;2017 Eat-Da-Burger. All Rights Reserved.
+        </div>
+        <div class="col-md-3 foot" style="text-align: right;">
+            <a href="/">Home</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $.fn.extend({
+            animateCss: function (animationName) {
+                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                this.addClass('animated ' + animationName).one(animationEnd, function () {
+                    $(this).removeClass('animated ' + animationName);
+                });
+            }
+        });
+
+        $(document).ready(function () {
+            $('.jumbotron').animateCss('rotateInDownLeft');
+
+            $(".panel").hover(function () {
+                $(this).animate({
+                    width: '110%',
+                    height: '110%',
+                    marginLeft: "-5%"
+                }, 250);
+            }, function () {
+                $(this).animate({
+                    width: '100%',
+                    height: '100%',
+                    marginLeft: 0
+                }, 250);
+            }
+            )
+        });
+    </script>
+</body>

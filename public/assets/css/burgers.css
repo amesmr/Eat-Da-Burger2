@@ -1,0 +1,118 @@
+body {
+    background-color: #ccf5ff;
+}
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+div.jumbotron {
+    background-image: url("../img/burger_background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 50%;
+    margin: 0 5% 5% 5%;
+}
+.create-update-form {
+    color: #ffffff;
+}
+img.jumbo-img {
+    width: 90%;
+}
+
+div.gifs {
+    margin-bottom: 5%;
+}
+
+.jumbotron,
+.panel-title {
+    font-family: 'Indie Flower', cursive;
+}
+
+.not-devoured {
+    background-color: #87cefa;
+}
+
+.devoured {
+    background-color: #34affb;
+}
+
+.navbar,
+.footer {
+    background-color: #1ad1ff;
+}
+
+.footer {
+    display: table;
+    line-height: 40px;
+}
+.foot {
+    display: table-cell;
+    vertical-align: middle;
+    height: 40px;
+}
+    .gifs {
+    webkit-animation-duration: 3s;
+    webkit-animation-delay: 2s;
+    webkit-animation-iteration-count: 5;
+    animation-duration: 3s;
+    animation-delay: 2s;
+    animation-iteration-count: 5;
+}
+
+.jumbo-header {
+    position: relative;
+    z-index: 1000;
+    webkit-animation-duration: 3s;
+    webkit-animation-delay: 10s;
+    animation-duration: 3s;
+    animation-delay: 10s;
+}
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url('../img/Capture.PNG') center center / cover no-repeat;
+    }
+    .fullscreen-bg__video {
+        display: none;
+    }
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: auto;
+        height: 100%;
+    }
+}
+@media (min-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        height: 300%;
+        top: -100%;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: 300%;
+        left: -100%;
+    }
+}
